@@ -5,24 +5,24 @@
     <title>Kite</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <td colspan="3">北</td>
-            <td rowspan="3">东</td>
-        </tr>
-        <tr>
-            <td rowspan="3">西</td>
-            <td class="no-border"></td>
-            <td class="no-border"></td>
-        </tr>
-        <tr>
-            <td class="no-border"></td>
-            <td class="no-border"></td>
-        </tr>
-        <tr>
-            <td colspan="3">南</td>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <td colspan="3">北</td>
+        <td rowspan="3">东</td>
+    </tr>
+    <tr>
+        <td rowspan="3">西</td>
+        <td id="td-1" class="no-border"></td>
+        <td id="td-2" class="no-border"></td>
+    </tr>
+    <tr>
+        <td id="td-4" class="no-border"></td>
+        <td class="no-border"></td>
+    </tr>
+    <tr>
+        <td colspan="3">南</td>
+    </tr>
+</table>
 </body>
 </html>
 
@@ -51,5 +51,18 @@
 
     td.no-border {
         border: none;
+    }
+
+    #td-1 {
+        border-right: dotted gray;
+        border-bottom: dotted gray;
+    }
+
+    #td-2 {
+        border-bottom: dotted gray;
+    }
+
+    #td-4 {
+        border-right: dotted gray;
     }
 </style>
