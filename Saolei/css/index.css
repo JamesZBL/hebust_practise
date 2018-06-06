@@ -1,0 +1,45 @@
+* {
+    font-family: 微软雅黑, sans-serif;
+    font-size: 20px;
+}
+
+.content {
+    padding-top: 50px;
+    text-align: center;
+}
+
+table {
+    border: 1px solid gray;
+    text-align: center;
+    cursor: pointer;
+}
+
+tr {
+    border: 1px solid gray;
+    text-align: center;
+}
+
+/* 默认样式（未知有无雷） */
+td {
+    background-color: gray;
+    border: 1px solid gray;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    color: white;
+}
+
+/* 已知无雷 */
+.nomine {
+    background-color: dodgerblue;
+}
+
+/* 已知有雷 */
+.mine {
+    background-color: darkred;
+}
+
+/* 红旗标记 */
+.flagged {
+    background-color: yellow;
+}
