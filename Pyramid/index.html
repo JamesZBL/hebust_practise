@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>金字塔</title>
+</head>
+<body>
+
+<script>
+	for (var i = 0; i < 9; i++) {
+		for (var j = 0; j < 9 - i; j++) {
+			document.write ('&nbsp;&nbsp;')
+		}
+
+		for (var q = 0; q < 2 * i + 1; q++) {
+			document.write ('*')
+		}
+		document.write ('<br>')
+	}
+</script>
+
+</body>
+</html>
+
+<style>
+    * {
+        font-family: 微软雅黑,monospace;
+        font-size: 60px;
+        line-height:40px;
+        letter-spacing: -9px;
+    }
+</style>
