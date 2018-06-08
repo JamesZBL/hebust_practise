@@ -86,6 +86,7 @@ initTable = function () {
 explode = function (result) {
 	$.each (cells, function (index, cell) {
 		if (-1 != $.inArray (index, mined)) {
+			$ (this).removeClass ();
 			$ (this).addClass ('mine');
 		}
 	});
