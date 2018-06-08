@@ -41,7 +41,7 @@ initTable = function () {
 			}
 
 			if (e.which == 1) { // 判断是否有雷
-
+				$(this).removeClass();
 				$ (this).addClass ('nomine');
 				remove (index, items);
 				var count = mineCount (cellIndex);
@@ -49,6 +49,7 @@ initTable = function () {
 
 			} else if (e.which == 3) {
 				$ (this).addClass ('flagged');
+				$(this).html('');
 				remove (index, items);
 				var count2 = mineCount (cellIndex);
 			}
