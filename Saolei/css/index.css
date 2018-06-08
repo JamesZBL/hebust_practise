@@ -27,6 +27,7 @@ td {
     width: 70px;
     height: 70px;
     color: white;
+    background-size: cover;
 }
 
 /* 已知无雷 */
@@ -36,10 +37,12 @@ td {
 
 /* 已知有雷 */
 .mine {
-    background-color: darkred;
+    /*background-color: darkred;*/
+    background-image: url('../img/mine.jpg');
 }
 
 /* 红旗标记 */
 .flagged {
-    background-color: yellow;
+    /*background-color: yellow;*/
+    background-image: url('../img/flag.jpg');
 }
