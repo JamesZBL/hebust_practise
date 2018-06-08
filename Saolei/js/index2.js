@@ -42,7 +42,7 @@ initTable = function () {
 
 			if (e.which == 1) {
 				// 判断是否有雷
-				$(this).removeClass();
+				$ (this).removeClass ();
 				$ (this).addClass ('nomine');
 				remove (index, items);
 				var count = mineCount (cellIndex);
@@ -50,7 +50,7 @@ initTable = function () {
 
 			} else if (e.which == 3) {
 				$ (this).addClass ('flagged');
-				$(this).html('');
+				$ (this).html ('');
 				remove (index, items);
 				var count2 = mineCount (cellIndex);
 			}
@@ -138,7 +138,14 @@ mineCount = function (index) {
 			if (hasMined (locations1[i])) {
 				count++;
 			}
-		})
+		});
+
+		if (count == 0) {
+			$(locations1).each(function (i) {
+				$(cells[locations1[i]]).addClass('nomine');
+				remove(locations1[i],items)
+			})
+		}
 	}
 
 	//	处于边界但不处于角落
@@ -199,6 +206,12 @@ mineCount = function (index) {
 			})
 		}
 
+		if (count == 0) {
+			$(locations2).each(function (i) {
+				$(cells[locations2[i]]).addClass('nomine');
+				remove(locations2[i],items)
+			})
+		}
 	}
 
 	//	处于角落
