@@ -13,9 +13,10 @@ cells = $ ('td');
 // 预设有雷的位置
 mined = [0, 1, 2, 3, 4];
 
-// 所有位置
+// 还没有被排除或标记过的位置
 var items = [];
 
+//	初始化
 $ (function () {
 	initTable ();
 });
@@ -50,7 +51,6 @@ initTable = function () {
 				$ (this).addClass ('flagged');
 				remove (index, items);
 				var count2 = mineCount (cellIndex);
-				$ (this).html (count2);
 			}
 
 			if (items.sort ().toString () == mined.sort ().toString ()) {
@@ -98,30 +98,30 @@ mineCount = function (index) {
 	const LEFT = 3;
 	// 位置
 	var location = [];
+	//	位于上边界
 	if (index - 5 < 0) {
-		//	位于上边界
 		location.push (UP);
 	}
 
+	//	位于下边界
 	if (index + 5 > 5 * 5 - 1) {
-		//	位于下边界
 		location.push (DOWN)
 	}
 
+	//	位于左边界
 	if (index % 5 == 0) {
-		//	位于左边界
 		location.push (LEFT)
 	}
 
+	//	位于右边界
 	if ((index + 1) % 5 == 0) {
-		//	位于右边界
 		location.push (RIGHT)
 	}
 
 	console.log (location);
 
+	//	未处于边界
 	if (location.length < 1) {
-
 		var locations1 = [];
 		locations1.push (index - 5);
 		locations1.push (index - 5 - 1);
@@ -137,7 +137,9 @@ mineCount = function (index) {
 				count++;
 			}
 		})
-	} else if (location.length == 1) {
+	}
+	//	处于边界但不处于角落
+	else if (location.length == 1) {
 		var locations2 = [];
 		locations2.push (index - 5);
 		locations2.push (index - 5 - 1);
@@ -194,7 +196,10 @@ mineCount = function (index) {
 			})
 		}
 
-	} else {
+	}
+
+	//	处于角落
+	else {
 		var locations3 = [];
 		locations3.push (index - 5);
 		locations3.push (index - 5 - 1);
