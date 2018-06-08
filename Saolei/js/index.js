@@ -138,6 +138,7 @@ mineCount = function (index) {
 			}
 		})
 	}
+
 	//	处于边界但不处于角落
 	else if (location.length == 1) {
 		var locations2 = [];
