@@ -31,20 +31,30 @@ initTable = function () {
 
 	$.each (cells, function (index, cell) {
 		// 绑定点击事件
-		$ (cell).on ('click', function () {
-			// 判断是否有雷
+		$ (cell).on ('mousedown', function (e) {
 			var cellIndex = $ (cells).index ($ (this));
 			if (-1 != $.inArray (cellIndex, mined)) {
 				// 游戏结束
 				explode (1);
-			} else {
+				return;
+			}
+
+			if (e.which == 1) { // 判断是否有雷
+
 				$ (this).addClass ('nomine');
 				remove (index, items);
 				var count = mineCount (cellIndex);
 				$ (this).html (count);
-				if (items.sort ().toString () == mined.sort ().toString ()) {
-					explode (0);
-				}
+
+			} else if (e.which == 3) {
+				$ (this).addClass ('flagged');
+				remove (index, items);
+				var count2 = mineCount (cellIndex);
+				$ (this).html (count2);
+			}
+
+			if (items.sort ().toString () == mined.sort ().toString ()) {
+				explode (0);
 			}
 		})
 	})
