@@ -19,7 +19,6 @@ table {
 }
 
 tr {
-    border: 1px solid gray;
     text-align: center;
 }
 
@@ -28,8 +27,8 @@ td {
     background-color: darksalmon;
     text-align: center;
     vertical-align: middle;
-    width: 70px;
-    height: 70px;
+    width: 30px;
+    height: 30px;
     color: white;
     background-size: cover;
 }
@@ -41,12 +40,10 @@ td {
 
 /* 已知有雷 */
 .mine {
-    /*background-color: darkred;*/
     background-image: url('../img/mine.jpg');
 }
 
 /* 红旗标记 */
 .flagged {
-    /*background-color: yellow;*/
     background-image: url('../img/flag.jpg');
 }
