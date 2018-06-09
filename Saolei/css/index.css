@@ -7,6 +7,10 @@ h1 {
     font-size: 30px;
 }
 
+a {
+
+}
+
 .content {
     padding: 20px;
     text-align: center;
@@ -25,7 +29,7 @@ tr {
 
 /* 默认样式（未知有无雷） */
 td {
-    background-color: gray;
+    background-color: darksalmon;
     border: 1px solid gray;
     text-align: center;
     width: 70px;
