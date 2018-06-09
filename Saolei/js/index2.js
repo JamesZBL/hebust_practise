@@ -8,13 +8,16 @@
 
 // 表格
 table = $ ('#table');
-// 所有单元格
-cells = $ ('td');
+
 // 预设有雷的位置
-mined = [0, 3, 9, 17, 23];
+var mined = [];
+
+var tableWidth = 7;
 
 // 还没有被排除或标记过的位置
 var items = [];
+
+var cells;
 
 //	初始化
 $ (function () {
@@ -26,9 +29,19 @@ $ (function () {
  * 初始化表格
  */
 initTable = function () {
-	for (var i = 0; i < 5 * 5; i++) {
+	for (var i = 0; i < tableWidth * tableWidth; i++) {
 		items.push (i)
 	}
+
+	for (var m = 0; m < tableWidth; m++) {
+		table.append ('<tr>');
+		for (var j = 0; j < tableWidth; j++) {
+			table.append ('<td></td>')
+		}
+		table.append ('</tr>')
+	}
+
+	cells = $ ('td');
 
 	$.each (cells, function (index, cell) {
 		// 绑定点击事件
@@ -143,7 +156,7 @@ inArray = function (element, array) {
  * @returns {boolean}
  */
 hasMined = function (index) {
-	return index > -1 && index < 5 * 5 - 1 && inArray (index, mined)
+	return index > -1 && index < tableWidth * tableWidth - 1 && inArray (index, mined)
 };
 
 /**
@@ -167,22 +180,22 @@ getSurroundLocations = function (index) {
 	// 位置
 	var location = [];
 	//	位于上边界
-	if (index - 5 < 0) {
+	if (index - tableWidth < 0) {
 		location.push (UP);
 	}
 
 	//	位于下边界
-	if (index + 5 > 5 * 5 - 1) {
+	if (index + tableWidth > tableWidth * tableWidth - 1) {
 		location.push (DOWN)
 	}
 
 	//	位于左边界
-	if (index % 5 == 0) {
+	if (index % tableWidth == 0) {
 		location.push (LEFT)
 	}
 
 	//	位于右边界
-	if ((index + 1) % 5 == 0) {
+	if ((index + 1) % tableWidth == 0) {
 		location.push (RIGHT)
 	}
 
@@ -191,12 +204,12 @@ getSurroundLocations = function (index) {
 	//	未处于边界
 	if (location.length < 1) {
 		var locations1 = [];
-		locations1.push (index - 5);
-		locations1.push (index - 5 - 1);
-		locations1.push (index - 5 + 1);
-		locations1.push (index + 5);
-		locations1.push (index + 5 + 1);
-		locations1.push (index + 5 - 1);
+		locations1.push (index - tableWidth);
+		locations1.push (index - tableWidth - 1);
+		locations1.push (index - tableWidth + 1);
+		locations1.push (index + tableWidth);
+		locations1.push (index + tableWidth + 1);
+		locations1.push (index + tableWidth - 1);
 		locations1.push (index - 1);
 		locations1.push (index + 1);
 
@@ -206,37 +219,37 @@ getSurroundLocations = function (index) {
 	//	处于边界但不处于角落
 	else if (location.length == 1) {
 		var locations2 = [];
-		locations2.push (index - 5);
-		locations2.push (index - 5 - 1);
-		locations2.push (index - 5 + 1);
-		locations2.push (index + 5);
-		locations2.push (index + 5 + 1);
-		locations2.push (index + 5 - 1);
+		locations2.push (index - tableWidth);
+		locations2.push (index - tableWidth - 1);
+		locations2.push (index - tableWidth + 1);
+		locations2.push (index + tableWidth);
+		locations2.push (index + tableWidth + 1);
+		locations2.push (index + tableWidth - 1);
 		locations2.push (index - 1);
 		locations2.push (index + 1);
 
 		if (inArray (UP, location)) {
-			remove (index - 5, locations2);
-			remove (index - 5 - 1, locations2);
-			remove (index - 5 + 1, locations2);
+			remove (index - tableWidth, locations2);
+			remove (index - tableWidth - 1, locations2);
+			remove (index - tableWidth + 1, locations2);
 		}
 
 		if (inArray (DOWN, location)) {
-			remove (index + 5, locations2);
-			remove (index + 5 - 1, locations2);
-			remove (index + 5 + 1, locations2);
+			remove (index + tableWidth, locations2);
+			remove (index + tableWidth - 1, locations2);
+			remove (index + tableWidth + 1, locations2);
 		}
 
 		if (inArray (LEFT, location)) {
 			remove (index - 1, locations2);
-			remove (index - 5 - 1, locations2);
-			remove (index + 5 - 1, locations2);
+			remove (index - tableWidth - 1, locations2);
+			remove (index + tableWidth - 1, locations2);
 		}
 
 		if (inArray (RIGHT, location)) {
 			remove (index + 1, locations2);
-			remove (index - 5 + 1, locations2);
-			remove (index + 5 + 1, locations2);
+			remove (index - tableWidth + 1, locations2);
+			remove (index + tableWidth + 1, locations2);
 		}
 
 		return locations2;
@@ -245,45 +258,45 @@ getSurroundLocations = function (index) {
 	//	处于角落
 	else {
 		var locations3 = [];
-		locations3.push (index - 5);
-		locations3.push (index - 5 - 1);
-		locations3.push (index - 5 + 1);
-		locations3.push (index + 5);
-		locations3.push (index + 5 + 1);
-		locations3.push (index + 5 - 1);
+		locations3.push (index - tableWidth);
+		locations3.push (index - tableWidth - 1);
+		locations3.push (index - tableWidth + 1);
+		locations3.push (index + tableWidth);
+		locations3.push (index + tableWidth + 1);
+		locations3.push (index + tableWidth - 1);
 		locations3.push (index - 1);
 		locations3.push (index + 1);
 
 		if (inArray (UP, location) && inArray (LEFT, location)) {
 			remove (index - 1, locations3);
-			remove (index - 5 + 1, locations3);
-			remove (index - 5 - 1, locations3);
-			remove (index - 5, locations3);
-			remove (index + 5 - 1, locations3);
+			remove (index - tableWidth + 1, locations3);
+			remove (index - tableWidth - 1, locations3);
+			remove (index - tableWidth, locations3);
+			remove (index + tableWidth - 1, locations3);
 		}
 
 		if (inArray (DOWN, location) && inArray (LEFT, location)) {
 			remove (index - 1, locations3);
-			remove (index - 5 - 1, locations3);
-			remove (index + 5 - 1, locations3);
-			remove (index + 5, locations3);
-			remove (index + 5 - 1, locations3);
+			remove (index - tableWidth - 1, locations3);
+			remove (index + tableWidth - 1, locations3);
+			remove (index + tableWidth, locations3);
+			remove (index + tableWidth - 1, locations3);
 		}
 
 		if (inArray (UP, location) && inArray (RIGHT, location)) {
 			remove (index + 1, locations3);
-			remove (index - 5 + 1, locations3);
-			remove (index - 5 - 1, locations3);
-			remove (index + 5 + 1, locations3);
-			remove (index - 5, locations3);
+			remove (index - tableWidth + 1, locations3);
+			remove (index - tableWidth - 1, locations3);
+			remove (index + tableWidth + 1, locations3);
+			remove (index - tableWidth, locations3);
 		}
 
 		if (inArray (DOWN, location) && inArray (RIGHT, location)) {
 			remove (index + 1, locations3);
-			remove (index - 5 + 1, locations3);
-			remove (index + 5 - 1, locations3);
-			remove (index + 5 + 1, locations3);
-			remove (index + 5, locations3);
+			remove (index - tableWidth + 1, locations3);
+			remove (index + tableWidth - 1, locations3);
+			remove (index + tableWidth + 1, locations3);
+			remove (index + tableWidth, locations3);
 		}
 
 		return locations3;

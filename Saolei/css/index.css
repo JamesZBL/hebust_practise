@@ -26,8 +26,8 @@ tr {
 /* 默认样式（未知有无雷） */
 td {
     background-color: darksalmon;
-    border: 1px solid gray;
     text-align: center;
+    vertical-align: middle;
     width: 70px;
     height: 70px;
     color: white;
