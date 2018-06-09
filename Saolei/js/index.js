@@ -111,7 +111,6 @@ initTable = function () {
 					$ (this).addClass ('flagged');
 					$ (this).html ('');
 				}
-				var count2 = mineCount (cellIndex);
 			}
 
 			if (items.sort ().toString () == mined.sort ().toString ()) {
@@ -125,7 +124,7 @@ initTable = function () {
  * 被雷炸到，游戏结束
  */
 explode = function (result) {
-	$.each (cells, function (index, cell) {
+	$.each (cells, function (index) {
 		if (-1 != $.inArray (index, mined)) {
 			$ (this).removeClass ();
 			$ (this).addClass ('mine');
