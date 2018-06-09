@@ -76,7 +76,7 @@ initTable = function () {
 				$ (this).addClass ('nomine');
 				remove (index, items);
 				var count = mineCount (cellIndex);
-				$ (this).html (count);
+				$ (this).html (count == 0 ? '' : count);
 
 				// 如果无雷，递归判断周边所有位置是否有雷
 				if (count == 0) {
