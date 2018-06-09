@@ -13,10 +13,10 @@ table = $ ('#table');
 var mined = [];
 
 // 雷区宽度
-var tableWidth = 5;
+var tableWidth = 9;
 
 // 类数量
-var mineLimits = 5;
+var mineLimits = tableWidth * tableWidth / 5;
 
 // 还没有被排除或标记过的位置
 var items = [];
