@@ -12,7 +12,11 @@ table = $ ('#table');
 // 预设有雷的位置
 var mined = [];
 
-var tableWidth = 7;
+// 雷区宽度
+var tableWidth = 5;
+
+// 类数量
+var mineLimits = 5;
 
 // 还没有被排除或标记过的位置
 var items = [];
@@ -21,8 +25,24 @@ var cells;
 
 //	初始化
 $ (function () {
+	initMine ();
 	initTable ();
 });
+
+/**
+ * 初始化雷区
+ */
+initMine = function () {
+	var i = 0;
+	while (i < mineLimits) {
+		var mine = Math.floor (Math.random () * tableWidth * tableWidth);
+		console.log (mine);
+		if (!inArray (mine, mined)) {
+			mined.push (mine);
+			i++;
+		}
+	}
+};
 
 
 /**
