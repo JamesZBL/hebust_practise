@@ -108,7 +108,11 @@ initTable = function () {
 			// 右键
 			else if (e.which == 3) {
 				if (inArray (cellIndex, items)) {
-					$ (this).addClass ('flagged');
+					if (-1 != this.className.indexOf ('flagged')) {
+						$ (this).removeClass ('flagged');
+					} else {
+						$ (this).addClass ('flagged');
+					}
 					$ (this).html ('');
 				}
 			}
@@ -126,7 +130,6 @@ initTable = function () {
 explode = function (result) {
 	$.each (cells, function (index) {
 		if (-1 != $.inArray (index, mined)) {
-			$ (this).removeClass ();
 			$ (this).addClass ('mine');
 		}
 	});
