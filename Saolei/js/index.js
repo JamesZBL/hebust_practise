@@ -128,8 +128,9 @@ initTable = function () {
  * 被雷炸到，游戏结束
  */
 explode = function (result) {
-	$.each (cells, function (index) {
+	$.each (cells, function (index, e) {
 		if (-1 != $.inArray (index, mined)) {
+			$ (this).removeClass ('flagged');
 			$ (this).addClass ('mine');
 		}
 	});
@@ -143,7 +144,7 @@ explode = function (result) {
 		}
 		str += '，点击任意位置重新开始';
 		alert (str);
-		$ ('body').on ('click', function () {
+		$ ('body').on ('mousedown', function () {
 			window.location.reload ()
 		});
 	}, 200);
