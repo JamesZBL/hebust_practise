@@ -128,7 +128,7 @@ initTable = function () {
  * 被雷炸到，游戏结束
  */
 explode = function (result) {
-	$.each (cells, function (index, e) {
+	$.each (cells, function (index) {
 		if (-1 != $.inArray (index, mined)) {
 			$ (this).removeClass ('flagged');
 			$ (this).addClass ('mine');
